@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Make our db accessible to our router
 app.use(function(req,res,next){
-  MongoClient.connect('mongodb://tanmoym:mitra82@ds159737.mlab.com:59737/myservapp', function(err, db) {
+  MongoClient.connect('mongodb://tanmoym:mitra82@ds127399.mlab.com:27399/tripshiredb', function(err, db) {
     if(err) throw err;
       req.db = db;
       next();
