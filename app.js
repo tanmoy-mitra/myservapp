@@ -4,13 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var MongoClient = require('mongodb').MongoClient, format = require('util').format;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('ds159737.mlab.com:59737/myservapp');
+
 
 var app = express();
 
@@ -26,9 +25,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Make our db accessible to our router
 app.use(function(req,res,next){
-    req.db = db;
-    next();
+  MongoClient.connect('mongodb://tanmoym:mitra82@ds159737.mlab.com:59737/myservapp', function(err, db) {
+    if(err) throw err;
+      req.db = db;
+      next();
+  });
 });
 
 app.use('/', routes);
