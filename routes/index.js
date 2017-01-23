@@ -47,7 +47,7 @@ router.get('/getData/:place',function(req, res) {
 			  	code:200,
 			  	data: data
 			  };
-			  res.status(200).send(JSON.stringify(GoogleResponse));
+			  res.status(200).send(JSON.stringify(serverResponse));
 			});
 		});
 	});
