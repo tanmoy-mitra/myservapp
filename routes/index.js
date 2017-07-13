@@ -9,6 +9,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/info', function(req, res, next) {
+  
+});
+
 router.get('/list', function(req, res) {
     var db = req.db;
     var collection = db.collection('usercollection');
